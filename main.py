@@ -16,7 +16,7 @@ external_client = AsyncOpenAI(
 )
 
 model = OpenAIChatCompletionsModel(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     openai_client=external_client,
 )
 
@@ -24,6 +24,16 @@ config = RunConfig(
     model=model,
     model_provider=external_client,
     tracing_disabled=True
+)
+
+billing_agent = Agent(
+    name="Billing Agent",
+    instructions="You are a helpful agent to handle related to billing queries"
+)
+
+security_agent= Agent(
+    name="Security Agent",
+    instructions="You are a helpful agent to handle related to security queries"
 )
 
 agent = Agent(
